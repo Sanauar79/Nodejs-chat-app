@@ -2,19 +2,26 @@
 <html>
     <head>
         <title>Chat App</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="/img/favicon.png">
         <link rel="stylesheet" href="/css/styles.min.css">
     </head>
     <body>
+        <button id="hamburger" class="hamburger">&#9776;</button>
+
         <div class="chat">
+            
+            <div id="backdrop" class="backdrop"></div>
+
             <div id="sidebar" class="chat__sidebar"></div>
+            
             <div class="chat__main">
                 <div id="messages" class="chat__messages"></div>
 
                 <div class="compose">
                     <form id="message-form" action="">
                         <input name="message" type="text" placeholder="Message" required autocomplete="off">
-                        <button>Send</button>
+                        <button id="send">Send</button>
                     </form>
                     <button id="send-location">Send location</button>
                 </div>
@@ -56,5 +63,23 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.8.0/qs.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script src="/js/chat.js"></script>
+
+        <script>
+const hamburger = document.getElementById('hamburger');
+const sidebar = document.getElementById('sidebar');
+const backdrop = document.getElementById('backdrop');
+
+hamburger.addEventListener('click', () => {
+    sidebar.classList.add('open');
+    backdrop.classList.add('show');
+    hamburger.classList.add('hide');
+});
+
+backdrop.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+    backdrop.classList.remove('show');
+    hamburger.classList.remove('hide');
+});
+</script>
     </body>
 </html>
